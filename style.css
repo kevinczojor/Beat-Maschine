@@ -92,6 +92,7 @@ header p { margin: 5px; font-size: 1rem; opacity: 0.8; }
     display: flex; gap: 30px; align-items: center; justify-content: center;
     padding: 15px 25px;
     background: white; border-radius: 10px; border: 1px solid #d1d5da;
+    width: 500px
 }
 
 .control-btn { padding: 10px 20px; cursor: pointer; border-radius: 6px; border: 1px solid #d1d5da; font-weight: bold; }
