@@ -34,16 +34,6 @@
             <div class="cell drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" onclick="this.innerHTML=''"></div>
         </div>
 
-        <div class="controls-container">
-            <button id="play-btn" class="control-btn" onclick="togglePlay()">Play</button>
-            <button class="control-btn" onclick="stopSequencer()">Stop</button>
-            
-            <div class="tempo-controls">
-                <label>Tempo: <span id="bpm-value">120</span> BPM</label>
-                <input type="range" id="bpm" min="40" max="240" value="120" oninput="updateBPM(this.value)">
-            </div>
-        </div>
-
         <div class="palette-container">
             <h3>Symbole:</h3>
             <div class="symbol-palette">
@@ -55,6 +45,15 @@
                 <img src="yeah.png" class="draggable-img" draggable="true" ondragstart="drag(event)">
                 <img src="klopfen.png" class="draggable-img" draggable="true" ondragstart="drag(event)">
             </div>
+            <div class="controls-container">
+            <button id="play-btn" class="control-btn" onclick="togglePlay()">Play</button>
+            <button class="control-btn" onclick="stopSequencer()">Stop</button>
+            
+            <div class="tempo-controls">
+                <label>Tempo: <span id="bpm-value">120</span> BPM</label>
+                <input type="range" id="bpm" min="40" max="240" value="120" oninput="updateBPM(this.value)">
+            </div>
+        </div>
             <button class="clear-btn" onclick="clearAll()">Tabelle leeren</button>
         </div>
     </main>
