@@ -74,12 +74,47 @@ header h1 { margin: 0; font-size: 2.5rem; }
 }
 
 .controls-container {
-    display: flex; gap: 30px; align-items: center; justify-content: center;
-    padding: 15px 25px; background: white; border-radius: 10px; border: 1px solid #d1d5da;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 25px;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid #d1d5da;
+    width: 640px; /* Gleiche Breite wie die Tabelle */
+    box-sizing: border-box;
 }
 
-.control-btn { padding: 10px 20px; cursor: pointer; border-radius: 6px; border: 1px solid #d1d5da; font-weight: bold; }
-#play-btn { background-color: #2ea44f; color: white; border: none; }
+/* Die Buttons erhalten eine feste Breite, damit sie sich nicht verformen */
+.control-btn {
+    width: 80px; /* Feste Breite für Stabilität */
+    padding: 10px 0;
+    cursor: pointer;
+    border-radius: 6px;
+    border: 1px solid #d1d5da;
+    font-weight: bold;
+    text-align: center;
+    flex-shrink: 0; /* Verhindert, dass der Button schrumpft */
+}
+
+/* Der Bereich mit dem Schieberegler */
+.tempo-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Festgelegte Breite für die Zahlen-Anzeige, damit nichts springt */
+    min-width: 120px; 
+    font-family: 'Courier New', Courier, monospace; /* Monospace-Zahlen wackeln weniger */
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* Der Slider selbst */
+#bpm {
+    cursor: pointer;
+    width: 150px;
+}
 
 @media screen and (max-width: 680px) {
     .grid-container { grid-template-columns: repeat(8, 11.5vw); grid-template-rows: repeat(2, 11.5vw); }
