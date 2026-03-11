@@ -1,56 +1,50 @@
-// 1. Erlaubt das Ablegen (WICHTIG: ohne das geht es nicht!)
+// Verhindert das Standardverhalten, damit "Drop" erlaubt ist
 function allowDrop(ev) {
     ev.preventDefault();
 }
 
-// 2. Wird aufgerufen, wenn das Ziehen startet
+// Speichert die Bildquelle beim Start des Ziehens
 function drag(ev) {
-    // Wir speichern die URL des Bildes
-    ev.dataTransfer.setData("text/plain", ev.target.src);
+    ev.dataTransfer.setData("imageSrc", ev.target.src);
 }
 
-// 3. Optional: Zeigt an, dass man über einer Zelle schwebt (Hover-Fix)
+// Optisches Feedback: Blau markieren, wenn man darüber schwebt
 function dragEnter(ev) {
     ev.preventDefault();
     if (ev.target.classList.contains('drop-zone')) {
-        ev.target.style.backgroundColor = "#e3f2fd"; // Hellblau beim Drüberfahren
+        ev.target.classList.add('drag-over');
     }
 }
 
+// Optisches Feedback entfernen, wenn man die Zelle verlässt
 function dragLeave(ev) {
     if (ev.target.classList.contains('drop-zone')) {
-        ev.target.style.backgroundColor = "white"; // Zurück zu weiß
+        ev.target.classList.remove('drag-over');
     }
 }
 
-// 4. Die eigentliche Drop-Logik
+// Das Bild in die Zelle einfügen
 function drop(ev) {
     ev.preventDefault();
     
-    // Hintergrundfarbe zurücksetzen
-    if (ev.target.classList.contains('drop-zone')) {
-        ev.target.style.backgroundColor = "white";
-    }
-
-    const imgSrc = ev.dataTransfer.getData("text/plain");
-    
-    // Ziel ermitteln (Sicherstellen, dass wir die Zelle treffen, nicht ein vorhandenes Bild)
+    // Ziel-Zelle finden
     let target = ev.target;
     if (target.tagName === "IMG") {
         target = target.parentElement;
     }
 
+    // Markierung entfernen
+    target.classList.remove('drag-over');
+
+    const src = ev.dataTransfer.getData("imageSrc");
+
     if (target.classList.contains('drop-zone')) {
-        // Altes Bild löschen, falls vorhanden
-        target.innerHTML = ""; 
+        // Zelle leeren
+        target.innerHTML = "";
         
-        // Neues Bild-Element erstellen
-        const img = document.createElement("img");
-        img.src = imgSrc;
-        img.style.width = "90%";
-        img.style.height = "90%";
-        img.style.objectFit = "contain";
-        
-        target.appendChild(img);
+        // Neues Bild-Element erstellen (Kopie)
+        const newImg = document.createElement("img");
+        newImg.src = src;
+        target.appendChild(newImg);
     }
 }
