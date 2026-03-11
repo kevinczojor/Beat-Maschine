@@ -1,7 +1,7 @@
 let isPlaying = false;
 let currentStep = 0;
 let playbackInterval = null;
-let bpm = 80;
+let bpm = 120;
 
 function allowDrop(ev) { ev.preventDefault(); }
 function drag(ev) { ev.dataTransfer.setData("imageSrc", ev.target.src); }
