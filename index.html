@@ -36,18 +36,16 @@
 
         <div class="palette-container">
             <h3>Symbole:</h3>
-            <div class="palette-row">
-                <div class="symbol-palette">
-                    <img src="schnippen.png" class="draggable-img" draggable="true" ondragstart="drag(event)">
-                    <img src="trampeln.png" class="draggable-img" draggable="true" ondragstart="drag(event)">
-                    <img src="klatschen.png" class="draggable-img" draggable="true" ondragstart="drag(event)">
-                    <img src="hey.png" class="draggable-img" draggable="true" ondragstart="drag(event)">
-                    <img src="ho.png" class="draggable-img" draggable="true" ondragstart="drag(event)">
-                    <img src="yeah.png" class="draggable-img" draggable="true" ondragstart="drag(event)">
-                    <img src="klopfen.png" class="draggable-img" draggable="true" ondragstart="drag(event)">
-                </div>
-                
+            <div class="symbol-palette">
+                <img src="schnippen.png" class="draggable-img" draggable="true" ondragstart="drag(event)">
+                <img src="trampeln.png" class="draggable-img" draggable="true" ondragstart="drag(event)">
+                <img src="klatschen.png" class="draggable-img" draggable="true" ondragstart="drag(event)">
+                <img src="hey.png" class="draggable-img" draggable="true" ondragstart="drag(event)">
+                <img src="ho.png" class="draggable-img" draggable="true" ondragstart="drag(event)">
+                <img src="yeah.png" class="draggable-img" draggable="true" ondragstart="drag(event)">
+                <img src="klopfen.png" class="draggable-img" draggable="true" ondragstart="drag(event)">
             </div>
+            <button class="clear-btn" onclick="clearAll()">Tabelle leeren</button>
         </div>
 
         <div class="controls-container">
@@ -59,7 +57,6 @@
                 <input type="range" id="bpm" min="40" max="240" value="120" oninput="updateBPM(this.value)">
             </div>
         </div>
-        <button class="clear-btn" onclick="clearAll()">Tabelle leeren</button>
     </main>
 
     <script src="script.js"></script>
