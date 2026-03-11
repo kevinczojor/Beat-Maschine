@@ -5,9 +5,13 @@ let bpm = 120;
 
 function allowDrop(ev) { ev.preventDefault(); }
 
-// Hier wird NUR die Bild-Quelle (URL) gespeichert
 function drag(ev) { 
+    // Speichert nur die URL des Bildes
     ev.dataTransfer.setData("imageSrc", ev.target.src); 
+    
+    // WICHTIG: Erzwingt, dass NUR das Bild gezogen wird (setDragImage)
+    // Parameter: Das Element, Versatz X (Mitte), Versatz Y (Mitte)
+    ev.dataTransfer.setDragImage(ev.target, ev.target.width / 2, ev.target.height / 2);
 }
 
 function dragEnter(ev) {
@@ -23,27 +27,26 @@ function dragLeave(ev) {
     if (target.classList.contains('drop-zone')) target.classList.remove('drag-over');
 }
 
-// Hier wird das Bild SAUBER neu erstellt
 function drop(ev) {
     ev.preventDefault();
     let target = ev.target;
-    
-    // Falls man auf ein bereits existierendes Bild droppt, nehmen wir die Zelle
     if (target.tagName === "IMG") target = target.parentElement;
     
     target.classList.remove('drag-over');
-    
-    // Wir holen NUR den Text der Bild-URL ab
     const src = ev.dataTransfer.getData("imageSrc");
     
     if (target.classList.contains('drop-zone') && src) {
-        target.innerHTML = ""; // Alten Inhalt komplett löschen
+        target.innerHTML = ""; 
         const newImg = document.createElement("img");
         newImg.src = src;
+        // Verhindert, dass das neue Bild selbst wieder drag-Anker für Geisterbilder wird
+        newImg.setAttribute('draggable', 'true');
+        newImg.addEventListener('dragstart', drag);
         target.appendChild(newImg);
     }
 }
 
+// Sequencer Logik
 function togglePlay() {
     if (isPlaying) stopSequencer();
     else {
