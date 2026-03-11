@@ -1,1 +1,45 @@
+body { font-family: sans-serif; text-align: center; background: #f0f0f0; }
 
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr); /* 8 Spalten */
+    gap: 5px;
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.cell {
+    aspect-ratio: 1 / 1; /* Macht die Zelle quadratisch */
+    border: 2px solid #333;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.cell.header { background: #eee; }
+
+.cell img {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.symbol-palette {
+    margin-top: 50px;
+    padding: 20px;
+    background: #ddd;
+}
+
+.selectable-symbol {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    margin: 10px;
+    transition: transform 0.2s;
+    border: 1px solid #ccc;
+    background: white;
+}
+
+.selectable-symbol:hover { transform: scale(1.1); }
