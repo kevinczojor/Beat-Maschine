@@ -1,64 +1,65 @@
-body { font-family: sans-serif; text-align: center; background: #f0f0f0; }
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f9;
+}
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(8, 1fr); /* 8 Spalten */
-    gap: 5px;
-    max-width: 800px;
-    margin: 40px auto;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px;
+    width: 90%;
+    max-width: 900px;
+    margin: 40px 0;
 }
 
 .cell {
-    aspect-ratio: 1 / 1; /* Macht die Zelle quadratisch */
-    border: 2px solid #333;
-    background: white;
+    aspect-ratio: 1 / 1;
+    border: 3px solid #333;
+    background-color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 2rem;
     font-weight: bold;
-    font-size: 1.5rem;
+    border-radius: 8px;
 }
 
-.cell.header { background: #eee; }
+.cell.header {
+    background-color: #eee;
+    color: #555;
+}
+
+/* Der Hover-Effekt beim Drag-and-Drop */
+.cell.drag-over {
+    background-color: #e3f2fd;
+    border-color: #2196f3;
+    border-style: dashed;
+}
 
 .cell img {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 85%;
+    max-height: 85%;
+    pointer-events: none; /* Verhindert, dass das Bild im Feld erneut gezogen wird */
 }
 
 .symbol-palette {
-    margin-top: 50px;
     padding: 20px;
-    background: #ddd;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.selectable-symbol {
+.draggable-img {
     width: 60px;
     height: 60px;
-    cursor: pointer;
     margin: 10px;
-    transition: transform 0.2s;
-    border: 1px solid #ccc;
-    background: white;
-}
-
-.selectable-symbol:hover { transform: scale(1.1); }
-
-.drop-zone {
-    transition: background-color 0.2s, border-color 0.2s;
-    cursor: cell;
-}
-
-/* Visuelles Feedback, wenn man ein Bild über die Zelle hält */
-.drop-zone.drag-over {
-    background-color: #e3f2fd;
-    border-color: #2196f3;
-}
-
-.selectable-symbol {
     cursor: grab;
+    transition: transform 0.2s;
 }
 
-.selectable-symbol:active {
+.draggable-img:active {
     cursor: grabbing;
 }
