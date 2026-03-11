@@ -43,13 +43,6 @@ header {
     border: 2px dashed #0366d6; border-radius: 10px;
 }
 
-/* Steuerung */
-.controls-container {
-    display: flex; gap: 15px; align-items: center;
-    margin-bottom: 20px; padding: 10px 20px;
-    background: white; border-radius: 8px; border: 1px solid #d1d5da;
-}
-
 .control-btn { padding: 8px 15px; cursor: pointer; border-radius: 6px; border: 1px solid #d1d5da; }
 
 /* Palette */
@@ -64,6 +57,12 @@ header {
 .clear-btn {
     padding: 10px 20px; background-color: #d73a49; color: white;
     border: none; border-radius: 6px; cursor: pointer; font-weight: bold;
+}
+/* Steuerung */
+.controls-container {
+    display: flex; gap: 15px; align-items: center;
+    margin-bottom: 20px; padding: 10px 20px;
+    background: white; border-radius: 8px; border: 1px solid #d1d5da;
 }
 
 /* RESPONSIVE ANPASSUNG FÜR HANDYS */
