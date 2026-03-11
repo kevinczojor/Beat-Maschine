@@ -1,6 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktive Symbole</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
-  <h1>Hallo Welt! Meine GitHub Seite läuft.</h1>
+
+    <header>
+        <h1>Symbol-Zuordnung</h1>
+        <p>Klicke auf ein Symbol unten, um es in die nächste freie Zelle einzufügen.</p>
+    </header>
+
+    <main>
+        <div class="grid-container">
+            <div class="cell header">1</div>
+            <div class="cell header">+</div>
+            <div class="cell header">2</div>
+            <div class="cell header">+</div>
+            <div class="cell header">3</div>
+            <div class="cell header">+</div>
+            <div class="cell header">4</div>
+            <div class="cell header">+</div>
+
+            <div class="cell drop-zone" onclick="clearCell(this)"></div>
+            <div class="cell drop-zone" onclick="clearCell(this)"></div>
+            <div class="cell drop-zone" onclick="clearCell(this)"></div>
+            <div class="cell drop-zone" onclick="clearCell(this)"></div>
+            <div class="cell drop-zone" onclick="clearCell(this)"></div>
+            <div class="cell drop-zone" onclick="clearCell(this)"></div>
+            <div class="cell drop-zone" onclick="clearCell(this)"></div>
+            <div class="cell drop-zone" onclick="clearCell(this)"></div>
+        </div>
+
+        <div class="symbol-palette">
+            <h3>Deine Symbole:</h3>
+            <div class="palette-inner">
+                <img src="symbol1.png" alt="Symbol 1" class="selectable-symbol" onclick="addToTable(this.src)">
+                <img src="symbol2.png" alt="Symbol 2" class="selectable-symbol" onclick="addToTable(this.src)">
+                <img src="plus.png" alt="Plus" class="selectable-symbol" onclick="addToTable(this.src)">
+            </div>
+            <p><small>Tipp: Klicke ein Symbol an, um es oben einzufügen. Klicke auf eine Zelle oben, um sie zu leeren.</small></p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
