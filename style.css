@@ -46,7 +46,7 @@ header {
 .cell.header {
     background-color: #f1f3f5;
     color: #586069;
-    font-size: 2rem; /* <-- Hier kannst du die Schriftgröße ändern (z.B. 2.5rem oder 3rem) */
+    font-size: 3rem; /* <-- Hier kannst du die Schriftgröße ändern (z.B. 2.5rem oder 3rem) */
     font-weight: bold;
 }
 
