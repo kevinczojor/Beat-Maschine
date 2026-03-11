@@ -46,7 +46,7 @@
                     <img src="yeah.png" class="draggable-img" draggable="true" ondragstart="drag(event)">
                     <img src="klopfen.png" class="draggable-img" draggable="true" ondragstart="drag(event)">
                 </div>
-                <button class="delete-box" onclick="clearAll()" title="Tabelle leeren">🗑</button>
+                
             </div>
         </div>
 
@@ -58,6 +58,7 @@
                 <label>Tempo: <span id="bpm-value">120</span> BPM</label>
                 <input type="range" id="bpm" min="40" max="240" value="120" oninput="updateBPM(this.value)">
             </div>
+            <button class="clear-btn" onclick="clearAll()">Tabelle leeren</button>
         </div>
     </main>
 
