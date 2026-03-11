@@ -1,18 +1,30 @@
-function addToTable(imgSrc) {
-    // Finde alle Zellen der unteren Reihe (drop-zones)
-    const zones = document.querySelectorAll('.drop-zone');
-    
-    // Suche die erste Zelle, die noch kein Bild hat
-    for (let zone of zones) {
-        if (zone.innerHTML === "") {
-            const newImg = document.createElement('img');
-            newImg.src = imgSrc;
-            zone.appendChild(newImg);
-            break; // Beende die Schleife nach dem Einfügen
-        }
-    }
+/ Verhindert das Standardverhalten (damit das Ablegen erlaubt ist)
+function allowDrop(ev) {
+    ev.preventDefault();
 }
 
-function clearCell(cell) {
-    cell.innerHTML = ""; // Leert die Zelle beim draufklicken
+// Speichert die Information, welches Bild gerade gezogen wird
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.src);
+}
+
+// Wird ausgeführt, wenn das Bild losgelassen wird
+function drop(ev) {
+    ev.preventDefault();
+    const imgSrc = ev.dataTransfer.getData("text");
+    
+    // Wir prüfen, ob wir in eine Zelle droppen (und nicht auf ein bereits vorhandenes Bild)
+    let targetCell = ev.target;
+    if (targetCell.tagName === "IMG") {
+        targetCell = targetCell.parentElement;
+    }
+
+    // Falls die Zelle leer ist, fügen wir ein neues Bild-Element hinzu
+    if (targetCell.classList.contains('drop-zone')) {
+        targetCell.innerHTML = ""; // Falls du das alte Bild ersetzen willst
+        const newImg = document.createElement("img");
+        newImg.src = imgSrc;
+        newImg.style.width = "90%";
+        targetCell.appendChild(newImg);
+    }
 }
