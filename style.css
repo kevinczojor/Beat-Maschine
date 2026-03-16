@@ -1,8 +1,10 @@
 body {
-    font-family: -apple-system, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     margin: 0; background-color: #f6f8fa;
     display: flex; flex-direction: column; align-items: center;
     user-select: none; -webkit-user-select: none;
+    /* Verhindert Zoom-Verzögerung auf Touch-Geräten */
+    touch-action: manipulation;
 }
 
 header {
@@ -11,6 +13,7 @@ header {
 }
 
 header h1 { margin: 0; font-size: 2.5rem; }
+header p { font-size: 0.9rem; opacity: 0.8; }
 
 .grid-container {
     display: grid;
@@ -23,16 +26,13 @@ header h1 { margin: 0; font-size: 2.5rem; }
     width: 80px; height: 80px; background-color: white;
     display: flex; align-items: center; justify-content: center;
     border: 1px solid #333; box-sizing: border-box; position: relative;
-    /* Hintergrund-Einstellungen für abgelegte Symbole */
-    background-size: 85%;
-    background-repeat: no-repeat;
-    background-position: center;
+    background-size: 85%; background-repeat: no-repeat; background-position: center;
+    cursor: pointer;
 }
 
-.cell.header { background-color: #f1f3f5; color: #586069; font-size: 2rem; font-weight: bold; }
+.cell.header { background-color: #f1f3f5; color: #586069; font-size: 2rem; font-weight: bold; cursor: default; }
 .cell.active { background-color: #fff9c4 !important; outline: 4px solid #fbc02d; z-index: 5; }
 
-/* Puls-Effekt */
 .cell.drop-zone.drag-over::after {
     content: ''; position: absolute; top: 4px; left: 4px; right: 4px; bottom: 4px;
     background-color: rgba(219, 237, 255, 0.7);
@@ -49,71 +49,53 @@ header h1 { margin: 0; font-size: 2.5rem; }
 .palette-container { width: 640px; text-align: center; }
 .symbol-palette {
     display: flex; justify-content: space-around; align-items: center;
-    background: white; padding: 10px; border: 2px solid #333; border-radius: 8px; margin-bottom: 15px;
+    background: white; padding: 10px; border: 3px solid #333; border-radius: 8px; margin-bottom: 15px;
 }
 
-/* Die neuen Zieh-Elemente */
 .drag-item {
-    width: 70px; height: 70px;
-    cursor: grab;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: transparent;
+    width: 70px; height: 70px; cursor: pointer;
+    background-size: contain; background-repeat: no-repeat; background-position: center;
+    transition: transform 0.2s, outline 0.1s;
 }
 
-/* Verhindert Markierungseffekte beim Ziehen */
-.drag-item:active {
-    opacity: 0.6;
+/* Neu: Markierung für ausgewähltes Symbol (Touch-Modus) */
+.selected-symbol {
+    outline: 4px solid #0366d6;
+    outline-offset: 4px;
+    border-radius: 4px;
+    transform: scale(1.1);
+    background-color: #ebf5ff;
 }
 
 .clear-btn {
     padding: 10px 20px; background-color: #d73a49; color: white;
-    border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-bottom: 20px;
-    font-size: 0.7rem
+    border: none; border-radius: 6px; cursor: pointer; font-weight: bold; 
+    margin-bottom: 20px; font-size: 1.2rem;
 }
 
 .controls-container {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-    padding: 15px 25px;
-    background: white;
-    border-radius: 10px;
-    border: 1px solid #d1d5da;
-    width: 640px;
-    box-sizing: border-box;
+    display: flex; gap: 20px; align-items: center; justify-content: center;
+    padding: 15px 25px; background: white; border-radius: 10px; border: 1px solid #d1d5da;
+    width: 640px; box-sizing: border-box;
 }
 
 .control-btn {
-    width: 90px; /* Feste Breite verhindert Wackeln */
-    padding: 10px 0;
-    cursor: pointer;
-    border-radius: 6px;
-    border: 1px solid #d1d5da;
-    font-weight: bold;
-    text-align: center;
-    flex-shrink: 0;
-    font-family: inherit; /* Nutzt die serifenlose Schriftart */
+    width: 90px; padding: 10px 0; cursor: pointer; border-radius: 6px;
+    border: 1px solid #d1d5da; font-weight: bold; text-align: center; flex-shrink: 0;
 }
 
 #play-btn { background-color: #2ea44f; color: white; border: none; }
-#play-btn:hover { background-color: #2c974b; }
-
 .stop-btn { background-color: #fafbfc; color: #24292e; }
-.stop-btn:hover { background-color: #f3f4f6; }
 
 .tempo-controls {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 140px; /* Reserviert Platz für 2- und 3-stellige BPM */
-    font-size: 0.9rem;
-    font-weight: bold;
+    display: flex; flex-direction: column; align-items: center;
+    min-width: 140px; font-size: 0.9rem; font-weight: bold;
 }
 
+#bpm { width: 150px; cursor: pointer; }
+
 @media screen and (max-width: 680px) {
+    .grid-container, .controls-container, .palette-container { width: 95vw; }
     .grid-container { grid-template-columns: repeat(8, 11.5vw); grid-template-rows: repeat(2, 11.5vw); }
     .cell { width: 11.5vw; height: 11.5vw; }
 }
